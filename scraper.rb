@@ -30,21 +30,28 @@ end
 def scrape_list(url)
   noko = noko_for(url)
   noko.css('table table table tr').css('a[href*="MemberDrill"]').each do |a|
-    puts a.to_s
-#    mp_url = URI.join url, tr.attr('href')
-#    scrape_person(a.text, mp_url)
+    mp_url = URI.join url, a.attr('href')
+    scrape_person(a.text, mp_url)
   end
 end
 
- def scrape_person(name, url)
+ def scrape_person(mp_name, url)
+   puts mp_name.to_s
    noko = noko_for(url)
+   
+   image_tag = noko.css('img[src*="PersonImage"]')[0]
+   image_src = URI.join url, image_tag.attr('src')
+
+   puts "\nImage: " + image_src.to_s
+   
    data = { 
-     id: url.to_s.split("/").last.sub('senator-',''),
-     name: name.sub('Senator ', ''),
-     image: noko.css('img[src*="/Senators/"]/@src').text,
+     id: url.to_s.split("=").last,
+     name: mp_name,
+     image: image_src,
      source: url.to_s,
    }
    data[:image] = URI.join(url, data[:image]).to_s unless data[:image].to_s.empty?
+
    ScraperWiki.save_sqlite([:id], data)
 end
 
