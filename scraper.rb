@@ -12,12 +12,12 @@
 require 'scraperwiki'
 require 'nokogiri'
 require 'open-uri'
-require 'colorize'
-
-require 'pry'
 
 # This is stopping me from debugging/running
-# what do I need it for? 
+# what do I need these for? 
+
+# require 'colorize'
+# require 'pry'
 # require 'open-uri/cached'
 # OpenURI::Cache.cache_path = '.cache'
 
