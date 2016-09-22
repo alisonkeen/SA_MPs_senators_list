@@ -92,10 +92,11 @@ def scrape_person(mp_name, url)
    data = { 
      id: url.to_s.split("=").last,
      id__saparl: url.to_s.split("=").last,
-     full_name: mp_name,
+     name: mp_name,
      house: which_house,
      email: email_address,
      image: image_src,
+     group: which_party,
      profile_page: url.to_s,
    }
 
