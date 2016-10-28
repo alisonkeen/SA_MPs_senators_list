@@ -96,7 +96,7 @@ def scrape_person(mp_name, url)
      house: which_house,
      email: email_address,
      image: image_src,
-     group: which_party,
+     party: which_party,
      profile_page: url.to_s,
    }
 
